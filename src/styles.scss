@@ -1,1 +1,402 @@
 /* You can add global styles to this file, and also import other style files */
+// You can add global styles to this file, and also import other style files
+$background-basic-color: #007bff;
+$text-basic-color: #acd637;
+$background-header-color: #e9ecef;
+$smart-table-secondary-fg: #495057;
+
+$smart-table-header-font-family: unquote('Open Sans, sans-serif');
+$smart-table-header-font-size: 0.9375rem;
+$smart-table-header-font-weight: 400;
+$smart-table-header-line-height: 1.25rem;
+$smart-table-header-font-color: $background-basic-color;
+$smart-table-header-fg: #1a2138;
+$smart-table-font-family: unquote('Open Sans, sans-serif');
+$smart-table-font-size: 0.9375rem;
+$smart-table-font-weight: 400;
+$smart-table-line-height: 1.25rem;
+$smart-table-fg: #1a2138;
+$smart-table-padding: 0.875rem 1.25rem;
+$smart-table-separator: #edf1f7;
+$smart-table-fg-secondary: #1a2138;
+$smart-table-header-bg: #ffffff;
+$smart-table-filter-padding: 0.375rem 0.5rem;
+$smart-table-bg-active: #edf1f7;
+$smart-table-bg-even: #f7f9fc;
+$smart-table-add-button-border-color: $background-basic-color;
+$smart-table-add-button-background-color: $background-basic-color;
+$button-filled-primary-background-color: $background-basic-color;
+$smart-table-add-button-text-color: #ffffff;
+$smart-table-add-button-focus-border-color: #1a34b8;
+$smart-table-add-button-hover-background-color: $text-basic-color;
+$smart-table-add-button-hover-border-color: #598bff;
+$smart-table-add-button-active-background-color: #7b51db;
+$smart-table-add-button-active-border-color: #7b51db;
+$smart-table-action-add-edit-hover-text-color: $background-basic-color;
+$smart-table-action-cancel-delete-hover-text-color: #ff3d71;
+$smart-table-paging-hover: transparent;
+$smart-table-paging-disabled-text-color: #c5cee0;
+$smart-table-paging-font-family: unquote('-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"');
+$smart-table-paging-font-size: 0.875rem;
+$smart-table-paging-line-height: 1rem;
+$smart-table-paging-border-color: #edf1f7;
+$smart-table-paging-border-width: 1px;
+$smart-table-border-radius: 0.25rem;
+$smart-table-paging-page-text-color: $background-basic-color;
+$smart-table-paging-page-focus-border-color: #5a37b8;
+$smart-table-paging-page-focus-text-color: #5a37b8;
+$smart-table-paging-hover-border-color: $text-basic-color;
+$smart-table-paging-hover-text-color: $text-basic-color;
+$smart-table-paging-fg-active: #ffffff;
+$smart-table-paging-bg-active: $background-basic-color;
+
+
+$store-exclude-inputs-text-color: #1a2138;
+
+.data-loading {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 100px;
+}
+
+.store-tooltip {
+  position: relative;
+  display: inline-block;
+  // border-bottom: 1px dotted black;
+}
+
+.store-tooltip .store-tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  right: 30px;
+  top: -3px;
+  z-index: 1;
+
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 100%; /* To the right of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+  }
+}
+
+.store-tooltip:hover .store-tooltiptext {
+  visibility: visible;
+}
+
+.search-google {
+  top: -13px !important;
+}
+
+ng2-smart-table {
+  table tr th,
+  table tr th a {
+    font-family: $smart-table-header-font-family;
+    font-size: $smart-table-header-font-size;
+    font-weight: $smart-table-header-font-weight;
+    line-height: $smart-table-header-line-height;
+    color: $smart-table-header-fg;
+  }
+
+  table tr td {
+    font-family: $smart-table-font-family;
+    font-size: $smart-table-font-size;
+    font-weight: $smart-table-font-weight;
+    line-height: $smart-table-line-height;
+    color: $smart-table-fg;
+  }
+
+  table tr th,
+  table tr td {
+    position: relative;
+    // padding: $smart-table-padding !important;
+    border: 1px solid $smart-table-separator;
+    vertical-align: middle;
+  }
+
+  table tr.ng2-smart-titles {
+    th {
+      padding: $smart-table-padding;
+      padding-right: 1.75rem;
+      padding-left: 1.75rem;
+      background-color: $background-header-color;
+    }
+
+    th a {
+      &:hover, &:active, &:visited {
+        color: $smart-table-header-fg;
+        text-decoration: none;
+      }
+      &.sort.asc, &.sort.desc {
+
+        font-weight: $smart-table-header-font-weight;
+
+        &::after {
+          border-bottom-color: $text-basic-color;
+          border-width: 0.375rem;
+          position: absolute;
+          margin: 0;
+          right: 0.75rem;
+          top: 50%;
+          transform: translate(0, -50%);
+        }
+
+        &.desc::after {
+          transform: translate(0, -50%) rotate(180deg);
+        }
+      }
+    }
+  }
+
+  thead tr {
+    background: $smart-table-header-bg;
+
+    // &.ng2-smart-filters {
+    //   display: none;
+    // }
+
+    &.ng2-smart-filters th {
+      padding: $smart-table-filter-padding !important;
+
+      .ng2-smart-filter input {
+        line-height: $smart-table-line-height;
+
+        // &:focus {
+        //   border-color: $background-basic-color;
+        //   box-shadow: none;
+        // }
+      }
+    }
+  }
+
+  tbody tr {
+    &.selected, &:hover {
+      background: $smart-table-bg-active !important;
+    }
+
+    &:nth-child(2n) {
+      background-color: $smart-table-bg-even;
+    }
+  }
+
+  // Actions
+  th.ng2-smart-actions-title-add {
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem !important;
+      padding: $smart-table-filter-padding;
+      border-color: $smart-table-add-button-border-color;
+      background-color: $smart-table-add-button-background-color;
+      color: $smart-table-add-button-text-color;
+      border-radius: 0.375rem;
+
+      &:focus {
+        border-color: $smart-table-add-button-focus-border-color;
+      }
+
+      &:hover {
+        text-decoration: none;
+        background-color: $smart-table-add-button-hover-background-color;
+        border-color: $smart-table-add-button-hover-border-color;
+      }
+
+      &:active {
+        background-color: $smart-table-add-button-active-background-color;
+        border-color: $smart-table-add-button-active-border-color;
+      }
+    }
+  }
+
+  .ng2-smart-sort-link {
+    color: $smart-table-secondary-fg !important;
+    text-decoration: none;
+  }
+
+  .ng2-smart-actions {
+    padding: 0 !important;
+    // fix for 100% height child
+    height: 1px;
+
+    ng2-st-actions,
+    ng2-st-tbody-edit-delete,
+    ng2-st-tbody-create-cancel {
+      display: flex;
+      height: 100%;
+    }
+
+    a.ng2-smart-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      font-size: 1.5rem !important;
+      color: #222b45;
+
+      &:not(:last-child) {
+       border-right: 1px solid $smart-table-separator;
+      }
+
+      &:first-child {
+        margin-right: 0;
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .ng2-smart-action-custom-custom:hover,
+    .ng2-smart-action-add-create:hover,
+    .ng2-smart-action-edit-edit:hover,
+    .ng2-smart-action-edit-save:hover {
+      color: $smart-table-action-add-edit-hover-text-color;
+    }
+
+    .ng2-smart-action-add-cancel:hover,
+    .ng2-smart-action-delete-delete:hover,
+    .ng2-smart-action-edit-cancel:hover {
+      color: $smart-table-action-cancel-delete-hover-text-color;
+    }
+  }
+
+  // TODO: remove this hack, when it will be possible to identify the whole row in the edit state
+  table-cell-edit-mode {
+    display: block;
+    margin: -7.5px -12px;
+  }
+
+  ng2-smart-table-pager {
+    display: block !important;
+  }
+
+  //Paging
+  nav.ng2-smart-pagination-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.25rem;
+
+
+    .ng2-smart-pagination {
+      display: flex;
+      padding: 0;
+
+      .page-item.disabled .page-link, .page-item.disabled .page-link:focus, .page-item.disabled .page-link:hover {
+        background-color: $smart-table-paging-hover;
+        color: $smart-table-paging-disabled-text-color;
+      }
+    }
+
+    .pagination {
+      font-family: $smart-table-paging-font-family;
+      font-size: $smart-table-paging-font-size;
+      line-height: $smart-table-paging-line-height;
+      border: $smart-table-paging-border-color solid $smart-table-paging-border-width;
+      border-radius: $smart-table-border-radius;
+
+      li {
+        overflow: hidden;
+        padding: 0.75rem 1.25rem;
+
+        &:not(:last-child) {
+          border-right: 1px solid $smart-table-separator;
+          border-left: 1px solid $smart-table-separator;
+        }
+
+        a.page-link-prev, a.page-link-next {
+          font-size: $smart-table-paging-font-size;
+          line-height: $smart-table-paging-line-height;
+        }
+
+        a, > span {
+          font-size: $smart-table-paging-font-size;
+          line-height: $smart-table-paging-line-height;
+          background-color: transparent;
+          color: $smart-table-paging-page-text-color;
+          padding: 0px;
+          border: none;
+
+          &:focus {
+            border-color: $smart-table-paging-page-focus-border-color;
+            color: $smart-table-paging-page-focus-text-color;
+          }
+
+          &:hover {
+            background-color: $smart-table-paging-hover;
+            border-color: $smart-table-paging-hover-border-color;
+            color: $smart-table-paging-hover-text-color;
+            text-decoration: none;
+          }
+        }
+
+        &:first-child {
+          a, > span {
+            border-top-left-radius: $smart-table-border-radius;
+            border-bottom-left-radius: $smart-table-border-radius;
+            border-top-right-radius: $smart-table-border-radius;
+            border-bottom-right-radius: $smart-table-border-radius;
+          }
+        }
+
+        &:last-child {
+          a, > span {
+            border-top-right-radius: $smart-table-border-radius;
+            border-bottom-right-radius: $smart-table-border-radius;
+            border-top-left-radius: $smart-table-border-radius;
+            border-bottom-left-radius: $smart-table-border-radius;
+          }
+        }
+
+        &.active {
+          background-color: $smart-table-paging-bg-active;
+
+          a, a:hover, a:focus, > span, > span:hover, > span:focus {
+            color: $smart-table-paging-fg-active;
+          }
+        }
+      }
+    }
+  }
+}
+
+.store-exclude-tag-input {
+  color: $store-exclude-inputs-text-color;
+  font-size: .875em !important;
+}
+
+.ng2-tag-input--focused {
+  border: 1px solid $background-basic-color !important;
+}
+
+.tag-wrapper {
+  margin-top: -2px;
+  margin-left: 4px;
+}
+
+.justify-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+.ng2-table {
+  width: 100%;
+  overflow: auto;
+}
